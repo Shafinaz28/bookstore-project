@@ -9,12 +9,14 @@ pool
   .connect()
   .then((client) => {
     console.log("✅ Connected to PostgreSQL");
+
     client.release();
 
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT}`);
     });
   })
-  .catch((err) => {
-    console.error("❌ Database connection failed:", err.message);
+  .catch((error) => {
+    console.error("❌ Database connection failed:", error.message);
+    process.exit(1);
   });
